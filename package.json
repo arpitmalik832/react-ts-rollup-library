@@ -1,5 +1,5 @@
 {
-  "name": "react-ts-rollup-library",
+  "name": "@arpitmalik832/react-ts-rollup-library",
   "version": "0.0.0",
   "description": "A React JS starter code",
   "type": "module",
@@ -12,6 +12,24 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/arpitmalik832/react-ts-rollup-library"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/src/index.d.ts",
+  "exports": {
+    "./icons/*": {
+      "import": "./dist/esm/assets/icons/*",
+      "require": "./dist/cjs/assets/icons/*"
+    },
+    ".": {
+      "types": "./dist/types/src/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./styles/*": "./dist/styles/*"
   },
   "scripts": {
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install dependencies')\"",
