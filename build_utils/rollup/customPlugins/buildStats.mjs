@@ -5,7 +5,7 @@ import zlib from 'zlib';
 /**
  * @returns {import('rollup').InputPluginOption}
  */
-export default function buildStats(outputPath = 'build-stats.json') {
+const buildStats = (outputPath = 'build-stats.json') => {
   let startTime;
 
   return {
@@ -41,8 +41,8 @@ export default function buildStats(outputPath = 'build-stats.json') {
           }
 
           const size = Buffer.byteLength(content, 'utf8');
-          const gzippedSize = zlib.gzipSync(content).length;
-          const brotliSize = zlib.brotliCompressSync(content).length;
+          const gzippedSize = zlib.gzipSync(content)?.length;
+          const brotliSize = zlib.brotliCompressSync(content)?.length;
 
           stats.files.push({
             fileName,
@@ -57,9 +57,9 @@ export default function buildStats(outputPath = 'build-stats.json') {
           stats.totalBrotliSize += brotliSize;
         });
 
-      stats.noOfFiles = stats.files.length;
+      stats.noOfFiles = stats.files?.length;
 
-      if (stats.files.length > 0) {
+      if (stats.files?.length > 0) {
         stats.files = stats.files.map(i => ({
           ...i,
           percentageBySize: ((i.size / stats.totalSize) * 100).toFixed(2),
@@ -76,4 +76,6 @@ export default function buildStats(outputPath = 'build-stats.json') {
       writeFileSync(outputPath, JSON.stringify(stats, null, 2));
     },
   };
-}
+};
+
+export default buildStats;

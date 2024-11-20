@@ -9,19 +9,21 @@ type TypographyScale = Record<
   Record<'value', string>
 >;
 
-function Typography() {
-  function getStyleObject(input: TypographyScale) {
-    const styles = Object.entries(input).map(([property, valueObj]) => {
-      const propName = property
-        ?.split('-')
-        ?.map((namePart, idx) =>
-          idx > 0 ? capitalizeFirstChar(namePart) : namePart,
-        )
-        ?.join('');
-      return [propName, valueObj.value];
-    });
-    return Object.fromEntries(styles);
-  }
+const Typography = () => {
+  const getStyleObject = (input: TypographyScale): Record<string, string> => {
+    const styles: [PropertyKey, string][] = Object.entries(input).map(
+      ([property, valueObj]) => {
+        const propName = property
+          ?.split('-')
+          ?.map((namePart, idx) =>
+            idx > 0 ? capitalizeFirstChar(namePart) : namePart,
+          )
+          ?.join('');
+        return [propName, valueObj.value];
+      },
+    );
+    return Object.fromEntries<string>(styles);
+  };
 
   return (
     <div className={s.typeContainer}>
@@ -88,6 +90,6 @@ function Typography() {
       </section>
     </div>
   );
-}
+};
 
 export default Typography;
