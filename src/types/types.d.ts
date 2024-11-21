@@ -74,6 +74,11 @@ type TypographyScale = 'h1';
 type TypographyScaleValue = '*px';
 type TypographyWeight = 'bold';
 type TypographyWeightValue = number;
+type TypographyScaleObject = Record<
+  'font-size' | 'line-height' | 'letter-spacing',
+  Record<'value', string>
+>;
+type TypographyWeightObject = Record<'value', TypographyWeightValue>;
 
 interface DesignTokens {
   'color-primitives': Record<
@@ -103,14 +108,8 @@ interface DesignTokens {
     >
   >;
   typography: {
-    scale: Record<
-      TypographyScale,
-      Record<
-        'font-size' | 'line-height' | 'letter-spacing',
-        Record<'value', TypographyScaleValue>
-      >
-    >;
-    weight: Record<TypographyWeight, Record<'value', TypographyWeightValue>>;
+    scale: Record<TypographyScale, TypographyScaleObject>;
+    weight: Record<TypographyWeight, TypographyWeightObject>;
   };
 }
 
