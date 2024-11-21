@@ -1,7 +1,7 @@
 import TerserPlugin from 'terser-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
-import { Configuration, RuleSetRule, WebpackPluginInstance } from 'webpack';
+import { Configuration, RuleSetRule } from 'webpack';
 import { ENVS } from '../build_utils/config';
 import svgrConfig from '../svgrConfig';
 import { ERR_NO_STORY_ENV_FLAG } from '../build_utils/config/logs';
@@ -21,7 +21,7 @@ export default {
   framework: '@storybook/react-webpack5',
   webpackFinal: (config: Configuration) => {
     if (!process.env.STORY_ENV) {
-      throw new Error(ERR_NO_STORY_ENV_FLAG as string);
+      throw new Error(ERR_NO_STORY_ENV_FLAG);
     }
 
     const isProd = process.env.STORY_ENV === ENVS.PROD;
@@ -131,12 +131,9 @@ export default {
     const addVisualizer = process.env.INCLUDE_VISUALIZER === 'true';
     const addBuildStats = process.env.INCLUDE_BUILD_STATS === 'true';
 
-    const bundleAnalyzerPlugin: WebpackPluginInstance =
-      getBundleAnalyzerConfig().plugins[0];
-
     // adding visualizer plugin
     if (addVisualizer) {
-      config.plugins!.push(bundleAnalyzerPlugin);
+      config.plugins!.push(getBundleAnalyzerConfig().plugins[0]);
     }
 
     // adding build stats plugin

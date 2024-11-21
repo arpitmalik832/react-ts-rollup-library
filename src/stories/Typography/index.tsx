@@ -1,16 +1,14 @@
 import tokens from '../../../static/enums/design_tokens.json';
+import { TypographyScaleObject } from '../../types/types.d';
 import classnames from '../../utils/classNames';
 import { capitalizeFirstChar } from '../../utils/stringUtils';
 
 import s from './index.scss';
 
-type TypographyScale = Record<
-  'font-size' | 'line-height' | 'letter-spacing',
-  Record<'value', string>
->;
-
 const Typography = () => {
-  const getStyleObject = (input: TypographyScale): Record<string, string> => {
+  const getStyleObject = (
+    input: TypographyScaleObject,
+  ): Record<string, string> => {
     const styles: [PropertyKey, string][] = Object.entries(input).map(
       ([property, valueObj]) => {
         const propName = property

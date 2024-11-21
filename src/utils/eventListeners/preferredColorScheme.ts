@@ -11,10 +11,9 @@ const preferredColorScheme: EventListenerUtil<MQEventListener> = {
     mq.addEventListener('change', callBackFn);
   },
   unSubscribe() {
-    const { callBackFn } = this;
     window
       .matchMedia('(prefers-color-scheme: dark)')
-      .removeEventListener('change', callBackFn);
+      .removeEventListener('change', this.callBackFn);
   },
 };
 
