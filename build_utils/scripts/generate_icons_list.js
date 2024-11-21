@@ -9,7 +9,7 @@ import {
   iconsPath,
 } from '../config/commonPaths.mjs';
 
-async function getIcons(dir) {
+const getIcons = async dir => {
   const dirents = await readdir(dir, { withFileTypes: true });
   const files = await Promise.all(
     dirents.map(dirent => {
@@ -20,9 +20,9 @@ async function getIcons(dir) {
     }),
   );
   return Array.prototype.concat(...files);
-}
+};
 
-async function processIcons(dir) {
+const processIcons = async dir => {
   const files = await getIcons(dir);
   const filesNew = files.map(i => i.replace(/\\/g, '/'));
   const content = `/**
@@ -36,12 +36,12 @@ export default list;
 `;
   await writeFile(iconsListJSPath, content);
   await writeFile(iconsListTSPath, content);
-}
+};
 
 processIcons(iconsPath)
   .then(() => {
-    console.log('\x1b[42m%s\x1b[0m', 'Successfully generated icons list');
+    console.log('\x1b[42m%s\x1b[0m', ' Successfully generated icons list ');
   })
   .catch(e => {
-    console.error('\x1b[41m%s: %s\x1b[0m', 'Failed to process icons', e);
+    console.error('\x1b[41m%s: %s\x1b[0m', ' Failed to process icons ', e);
   });

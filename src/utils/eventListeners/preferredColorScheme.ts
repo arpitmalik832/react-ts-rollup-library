@@ -1,7 +1,7 @@
-import { MQEventListener } from '../../types/types.d';
+import { EventListenerUtil, MQEventListener } from '../../types/types.d';
 
-const preferredColorScheme = {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+const preferredColorScheme: EventListenerUtil<MQEventListener> = {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
   callBackFn(...args: Parameters<MQEventListener>) {},
   subscribe(callBackFn: MQEventListener) {
     this.callBackFn = callBackFn;
@@ -11,9 +11,10 @@ const preferredColorScheme = {
     mq.addEventListener('change', callBackFn);
   },
   unSubscribe() {
+    const { callBackFn } = this;
     window
       .matchMedia('(prefers-color-scheme: dark)')
-      .removeEventListener('change', this.callBackFn);
+      .removeEventListener('change', callBackFn);
   },
 };
 
