@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 import {
   clearStack,
@@ -8,7 +8,7 @@ import {
   pushStack,
 } from '../redux/slices/navigationSlice';
 import beforeUnload from '../utils/eventListeners/beforeUnload';
-import { log } from '../utils/logsUtils';
+import { errorLog, log } from '../utils/logsUtils';
 import { ReduxState, NavigationRedux, VoidFunction } from '../types/types.d';
 
 const useBackPress = () => {
@@ -22,7 +22,16 @@ const useBackPress = () => {
     if (stack.length) {
       dispatch(popStack(undefined));
     } else {
-      navigate(-1);
+      const res = navigate(-1);
+      if (res instanceof Promise) {
+        res
+          .then(() => {
+            log('user back clicked!!!');
+          })
+          .catch((err: Error) => {
+            errorLog('error while navigating back', err);
+          });
+      }
     }
   }, [stack]);
 
