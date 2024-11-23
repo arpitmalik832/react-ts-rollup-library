@@ -8,7 +8,7 @@ import useBackPress from '../useBackPress';
 import { BeforeUnloadEventListener } from '../../types/types.d';
 import { navigationSlice } from '../../redux/slices';
 
-jest.mock('react-router-dom', () => ({
+jest.mock('react-router', () => ({
   __esModule: true,
   useNavigate: jest.fn().mockReturnValue(jest.fn()),
 }));
