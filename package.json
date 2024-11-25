@@ -31,7 +31,7 @@
     "./styles/*": "./dist/styles/*"
   },
   "scripts": {
-    "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('pnpm') === -1) throw new Error('You must use pnpm to install dependencies')\"",
+    "preinstall": "if [ \"$SKIP_PREINSTALL\" != \"true\" ]; then node -e \"if(process.env.npm_execpath.indexOf('pnpm') === -1) throw new Error('You must use pnpm to install dependencies')\"; else echo 'Skipping preinstall script'; fi",
     "rm-dist": "rimraf dist --glob",
     "rm-node_modules": "rimraf node_modules --glob",
     "rm-package-lock": "rimraf package-lock.json",
