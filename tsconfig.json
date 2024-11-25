@@ -19,6 +19,6 @@
     "build_utils/**/*",
     "src/**/*",
     "jest.setup.ts",
-    "svgr.config.ts"
+    "svgrConfig.ts"
   ]
 }
