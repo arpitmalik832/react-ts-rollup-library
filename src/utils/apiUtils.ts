@@ -74,19 +74,19 @@ const addResponseInterceptor = <T>(axiosInstance: AxiosInstance) => {
           },
         },
       };
-      if (newResponse.config.data) {
-        newResponse.config.data.responseTime =
-          newResponse.config.data.endTime.getTime() -
-          newResponse.config.data.startTime.getTime();
+      const metadata = newResponse.config.data as RequestMetadata;
+      if (metadata) {
+        metadata.responseTime =
+          metadata.endTime.getTime() - metadata.startTime.getTime();
       }
       return newResponse;
     },
     (error: AxiosError<T, RequestMetadata>) => {
       const newError = { ...error };
-      newError.config!.data!.endTime = new Date();
-      newError.config!.data!.responseTime =
-        newError.config!.data!.endTime.getTime() -
-        newError.config!.data!.startTime.getTime();
+      const metadata = newError.config!.data! as RequestMetadata;
+      metadata.endTime = new Date();
+      metadata.responseTime =
+        metadata.endTime.getTime() - metadata.startTime.getTime();
       errorLog('Response returned with error -> ', newError);
       throw newError as AxiosError<T, RequestMetadata>;
     },
