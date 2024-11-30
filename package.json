@@ -239,5 +239,5 @@
     "rxjs": "^7.8.1",
     "web-vitals": "^4.2.4"
   },
-  "packageManager": "pnpm@10.0.0-alpha.2"
+  "packageManager": "pnpm@10.0.0-beta.1"
 }
