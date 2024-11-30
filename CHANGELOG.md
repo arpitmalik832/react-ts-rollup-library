@@ -1,3 +1,5 @@
+## [0.0.1-alpha.3](https://github.com/arpitmalik832/react-ts-rollup-library/compare/v0.0.1-alpha.2...v0.0.1-alpha.3) (2024-11-30)
+
 ## [0.0.1-alpha.2](https://github.com/arpitmalik832/react-ts-rollup-library/compare/v0.0.1-alpha.1...v0.0.1-alpha.2) (2024-11-29)
 
 ## [0.0.1-alpha.1](https://github.com/arpitmalik832/react-ts-rollup-library/compare/v0.0.1-alpha.0...v0.0.1-alpha.1) (2024-11-25)
