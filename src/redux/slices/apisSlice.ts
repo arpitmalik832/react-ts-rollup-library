@@ -10,8 +10,8 @@ import {
   AddToApiHeadersByIndex,
   APIData,
   ApisRedux,
-  updateApiAxiosInstanceByHost,
-  updateApiAxiosInstanceByIndex,
+  UpdateApiAxiosInstanceByHost,
+  UpdateApiAxiosInstanceByIndex,
   UpdateApiHeadersByHost,
   UpdateApiHeadersByIndex,
   UpdateApiHostByIndex,
@@ -120,7 +120,7 @@ const apisSlice = createSlice<
     },
     updateApiAxiosInstanceByHost: (
       state,
-      action: PayloadAction<updateApiAxiosInstanceByHost>,
+      action: PayloadAction<UpdateApiAxiosInstanceByHost>,
     ) => {
       const newState = state;
       const { host } = action.payload;
@@ -133,7 +133,7 @@ const apisSlice = createSlice<
     },
     updateApiAxiosInstanceByIndex: (
       state,
-      action: PayloadAction<updateApiAxiosInstanceByIndex>,
+      action: PayloadAction<UpdateApiAxiosInstanceByIndex>,
     ) => {
       const newState = state;
       const { index } = action.payload;
@@ -148,8 +148,13 @@ const apisSlice = createSlice<
 
 export { apisSlice };
 export const {
-  updateApi1Host,
-  updateApi1Headers,
-  addToApi1Headers,
-  updateApi1AxiosInstance,
+  addNewApiData,
+  updateApiHostByValue,
+  updateApiHostByIndex,
+  updateApiHeadersByHost,
+  updateApiHeadersByIndex,
+  addToApi1HeadersByHost,
+  addToApi1HeadersByIndex,
+  updateApiAxiosInstanceByHost,
+  updateApiAxiosInstanceByIndex,
 } = apisSlice.actions;

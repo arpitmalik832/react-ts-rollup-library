@@ -42,12 +42,12 @@ export interface AddToApiHeadersByIndex {
   newHeader: KeyValuePair;
 }
 
-export interface updateApiAxiosInstanceByHost {
+export interface UpdateApiAxiosInstanceByHost {
   host: string;
   axiosInstance: AxiosInstance;
 }
 
-export interface updateApiAxiosInstanceByIndex {
+export interface UpdateApiAxiosInstanceByIndex {
   index: number;
   axiosInstance: AxiosInstance;
 }
