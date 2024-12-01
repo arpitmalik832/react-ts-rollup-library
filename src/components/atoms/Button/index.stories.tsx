@@ -1,15 +1,14 @@
-import { STORY } from '../../../enums/Button';
 import Button from './index';
 
 export default {
-  title: STORY.TITLE,
+  title: 'Atoms/Button',
   component: Button,
-  tags: [STORY.DOCS_TAG],
+  tags: ['autodocs'],
 };
 
 export const Primary = {
   args: {
     primary: true,
-    label: STORY.LABEL,
+    label: 'Button',
   },
 };

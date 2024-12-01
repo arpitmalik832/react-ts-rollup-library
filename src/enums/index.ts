@@ -1,3 +1,3 @@
 export * as APP from './app';
-export * as BUTTON from './Button';
+export * as REDUX from './redux';
 export * as SW from './sw';
