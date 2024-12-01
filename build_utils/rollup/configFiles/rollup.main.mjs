@@ -7,7 +7,7 @@ import {
   ERR_NO_APP_ENV_FLAG,
   ERR_NO_LIB_ENV_FLAG,
 } from '../../config/logs.mjs';
-import { ENVS } from '../../config/index.mjs';
+import { BUILD_TYPE, ENVS } from '../../config/index.mjs';
 
 /**
  * @returns {import('rollup').RollupOptions[]}
@@ -24,8 +24,8 @@ const getAddons = () => {
   if (addMinimizer) configs.push(minimizerConfig);
   if (addStripCustomWindowVariables)
     configs.push(stripCustomWindowVariablesConfig);
-  if (addVisualizer) configs.push(visualizerConfig('main'));
-  if (addBuildStats) configs.push(buildStatsConfig('main'));
+  if (addVisualizer) configs.push(visualizerConfig(BUILD_TYPE.MAIN));
+  if (addBuildStats) configs.push(buildStatsConfig(BUILD_TYPE.MAIN));
 
   return configs;
 };
