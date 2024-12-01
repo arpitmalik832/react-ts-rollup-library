@@ -1,3 +1,9 @@
+## [0.0.1-alpha.5](https://github.com/arpitmalik832/react-ts-rollup-library/compare/v0.0.1-alpha.4...v0.0.1-alpha.5) (2024-12-01)
+
+### Bug Fixes
+
+- **main:** fixed the apiSlice ([0a7af12](https://github.com/arpitmalik832/react-ts-rollup-library/commit/0a7af12e6671997e81408627427cf353ff0872ea))
+
 ## [0.0.1-alpha.4](https://github.com/arpitmalik832/react-ts-rollup-library/compare/v0.0.1-alpha.3...v0.0.1-alpha.4) (2024-12-01)
 
 ### Bug Fixes
