@@ -10,7 +10,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { Provider, useSelector } from 'react-redux';
 
 import useApiRequest from '../useApiRequest';
-import { ApisRedux, ReduxState } from '../../types/types.d';
+import type { ApisRedux, ReduxState } from '../../redux/slices/types';
 import { errorLog, log } from '../../utils';
 
 jest.mock('../../utils/commonUtils', () => ({
@@ -43,9 +43,9 @@ describe('useApiRequest unit tests', () => {
     >({
       name: 'apis',
       initialState: {
-        api1Host: 'https://jsonplaceholder.typicode.com/',
-        api1Headers: {},
-        api1AxiosInstance: axios.create(),
+        apiHosts: ['https://jsonplaceholder.typicode.com/'],
+        apiHeaders: [{}],
+        apiAxiosInstances: [axios.create()],
       },
       reducers: {},
     });
@@ -85,9 +85,9 @@ describe('useApiRequest unit tests', () => {
     >({
       name: 'apis',
       initialState: {
-        api1Host: 'https://jsonplaceholder.typicode.com/',
-        api1Headers: {},
-        api1AxiosInstance: axios.create(),
+        apiHosts: ['https://jsonplaceholder.typicode.com/'],
+        apiHeaders: [{}],
+        apiAxiosInstances: [axios.create()],
       },
       reducers: {},
     });
@@ -109,7 +109,7 @@ describe('useApiRequest unit tests', () => {
           onClick={() => {
             makeGetCall<Record<string, string>>(
               'todos/1',
-              apis.api1AxiosInstance!,
+              apis.apiAxiosInstances[0],
             )
               .then(res => log('response', res))
               .catch((err: AxiosError) => errorLog('error', err));
@@ -140,9 +140,9 @@ describe('useApiRequest unit tests', () => {
     >({
       name: 'apis',
       initialState: {
-        api1Host: 'https://jsonplaceholder.typicode.com/',
-        api1Headers: {},
-        api1AxiosInstance: axios.create(),
+        apiHosts: ['https://jsonplaceholder.typicode.com/'],
+        apiHeaders: [{}],
+        apiAxiosInstances: [axios.create()],
       },
       reducers: {},
     });
@@ -164,7 +164,7 @@ describe('useApiRequest unit tests', () => {
           onClick={() => {
             makeGetCall<Record<string, string>>(
               'todos/1',
-              apis.api1AxiosInstance!,
+              apis.apiAxiosInstances[0],
             )
               .then(res => log('response', res))
               .catch((err: AxiosError) => errorLog('error', err));
@@ -196,9 +196,9 @@ describe('useApiRequest unit tests', () => {
     >({
       name: 'apis',
       initialState: {
-        api1Host: 'https://jsonplaceholder.typicode.com/',
-        api1Headers: {},
-        api1AxiosInstance: axios.create(),
+        apiHosts: ['https://jsonplaceholder.typicode.com/'],
+        apiHeaders: [{}],
+        apiAxiosInstances: [axios.create()],
       },
       reducers: {},
     });
@@ -221,7 +221,7 @@ describe('useApiRequest unit tests', () => {
             makePostCall<object, Record<string, string>>(
               'todos/1',
               {},
-              apis.api1AxiosInstance!,
+              apis.apiAxiosInstances[0],
             )
               .then(res => log('response', res))
               .catch((err: AxiosError) => errorLog('error', err));
@@ -251,9 +251,9 @@ describe('useApiRequest unit tests', () => {
     >({
       name: 'apis',
       initialState: {
-        api1Host: 'https://jsonplaceholder.typicode.com/',
-        api1Headers: {},
-        api1AxiosInstance: axios.create(),
+        apiHosts: ['https://jsonplaceholder.typicode.com/'],
+        apiHeaders: [{}],
+        apiAxiosInstances: [axios.create()],
       },
       reducers: {},
     });
@@ -276,7 +276,7 @@ describe('useApiRequest unit tests', () => {
             makePutCall<object, Record<string, string>>(
               'todos/1',
               {},
-              apis.api1AxiosInstance!,
+              apis.apiAxiosInstances[0],
             )
               .then(res => log('response', res))
               .catch((err: AxiosError) => errorLog('error', err));
@@ -306,9 +306,9 @@ describe('useApiRequest unit tests', () => {
     >({
       name: 'apis',
       initialState: {
-        api1Host: 'https://jsonplaceholder.typicode.com/',
-        api1Headers: {},
-        api1AxiosInstance: axios.create(),
+        apiHosts: ['https://jsonplaceholder.typicode.com/'],
+        apiHeaders: [{}],
+        apiAxiosInstances: [axios.create()],
       },
       reducers: {},
     });
@@ -330,7 +330,7 @@ describe('useApiRequest unit tests', () => {
           onClick={() => {
             makeDeleteCall<Record<string, string>>(
               'todos/1',
-              apis.api1AxiosInstance!,
+              apis.apiAxiosInstances[0],
             )
               .then(res => log('response', res))
               .catch((err: AxiosError) => errorLog('error', err));
@@ -360,9 +360,9 @@ describe('useApiRequest unit tests', () => {
     >({
       name: 'apis',
       initialState: {
-        api1Host: 'https://jsonplaceholder.typicode.com/',
-        api1Headers: {},
-        api1AxiosInstance: axios.create(),
+        apiHosts: ['https://jsonplaceholder.typicode.com/'],
+        apiHeaders: [{}],
+        apiAxiosInstances: [axios.create()],
       },
       reducers: {},
     });
@@ -386,20 +386,20 @@ describe('useApiRequest unit tests', () => {
             makePostCall<object, Record<string, string>>(
               'todos/1',
               {},
-              apis.api1AxiosInstance!,
+              apis.apiAxiosInstances[0],
             )
               .then(res => log('response', res))
               .catch((err: AxiosError) => errorLog('error', err));
             makePutCall<object, Record<string, string>>(
               'todos/1',
               {},
-              apis.api1AxiosInstance!,
+              apis.apiAxiosInstances[0],
             )
               .then(res => log('response', res))
               .catch((err: AxiosError) => errorLog('error', err));
             makeDeleteCall<Record<string, string>>(
               'todos/1',
-              apis.api1AxiosInstance!,
+              apis.apiAxiosInstances[0],
             )
               .then(res => log('response', res))
               .catch((err: AxiosError) => errorLog('error', err));
