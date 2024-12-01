@@ -6,7 +6,7 @@ import {
 } from '@reduxjs/toolkit';
 
 import { THEME } from '../../enums/app';
-import type { AppRedux } from './types';
+import type { AppRedux } from '../types';
 import type { KeyValuePair } from '../../types/types';
 import { SLICE_NAMES } from '../../enums/redux';
 
