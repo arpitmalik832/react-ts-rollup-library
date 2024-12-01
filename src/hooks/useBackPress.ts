@@ -9,7 +9,9 @@ import {
 } from '../redux/slices/navigationSlice';
 import beforeUnload from '../utils/eventListeners/beforeUnload';
 import { errorLog, log } from '../utils/logsUtils';
-import { ReduxState, NavigationRedux, VoidFunction } from '../types/types.d';
+import type { ReduxState, NavigationRedux } from '../redux/slices/types';
+import type { VoidFunctionWithParams } from '../types/types';
+import { APP_UNMOUNT, BACK_CLICK } from '../enums/app';
 
 const useBackPress = () => {
   const { stack } = useSelector<ReduxState, NavigationRedux>(
@@ -26,10 +28,10 @@ const useBackPress = () => {
       if (res instanceof Promise) {
         res
           .then(() => {
-            log('user back clicked!!!');
+            log(BACK_CLICK.SUCCESS);
           })
           .catch((err: Error) => {
-            errorLog('error while navigating back', err);
+            errorLog(BACK_CLICK.ERROR, err);
           });
       }
     }
@@ -39,7 +41,7 @@ const useBackPress = () => {
 
   useEffect(() => {
     beforeUnload.subscribe(() => {
-      log('😬 user back clicked!!');
+      log(APP_UNMOUNT);
     });
 
     return () => {
@@ -47,7 +49,7 @@ const useBackPress = () => {
     };
   }, []);
 
-  const push = (callback: VoidFunction) => {
+  const push = (callback: VoidFunctionWithParams) => {
     dispatch(pushStack(callback));
   };
 
