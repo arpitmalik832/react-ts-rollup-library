@@ -16,7 +16,7 @@ import {
   UpdateApiHeadersByIndex,
   UpdateApiHostByIndex,
   UpdateApiHostByValue,
-} from './types';
+} from '../types';
 import { SLICE_NAMES } from '../../enums/redux';
 
 const apisSlice = createSlice<
@@ -27,20 +27,12 @@ const apisSlice = createSlice<
   string
 >({
   name: SLICE_NAMES.APIS,
-  initialState: {
-    apiHosts: [],
-    apiHeaders: [{}],
-    apiAxiosInstances: [],
-  },
+  initialState: [],
   reducers: {
-    addNewApiData: (state, action: PayloadAction<APIData>) => ({
-      apiHosts: [...state.apiHosts, action.payload.host],
-      apiHeaders: [...state.apiHeaders, action.payload.headers],
-      apiAxiosInstances: [
-        ...state.apiAxiosInstances,
-        action.payload.axiosInstance,
-      ],
-    }),
+    addNewApiData: (state, action: PayloadAction<APIData>) => [
+      ...state,
+      action.payload,
+    ],
     updateApiHostByValue: (
       state,
       action: PayloadAction<UpdateApiHostByValue>,
@@ -48,9 +40,15 @@ const apisSlice = createSlice<
       const newState = state;
       const oldApi = action.payload.oldValue;
 
-      const index = newState.apiHosts.indexOf(oldApi);
-      if (index !== -1) {
-        newState.apiHosts[index] = action.payload.newValue;
+      const item = newState.find(i => i.host === oldApi);
+      if (item) {
+        const index = newState.indexOf(item);
+        if (index !== -1) {
+          newState[index] = {
+            ...item,
+            host: action.payload.newValue,
+          };
+        }
       }
       return newState;
     },
@@ -61,8 +59,11 @@ const apisSlice = createSlice<
       const newState = state;
       const { index } = action.payload;
 
-      if (index <= newState.apiHosts.length) {
-        newState.apiHosts[index] = action.payload.newValue;
+      if (index <= newState.length) {
+        newState[index] = {
+          ...newState[index],
+          host: action.payload.newValue,
+        };
       }
       return newState;
     },
@@ -73,9 +74,15 @@ const apisSlice = createSlice<
       const newState = state;
       const { host } = action.payload;
 
-      const index = newState.apiHosts.indexOf(host);
-      if (index !== -1) {
-        newState.apiHeaders[index] = action.payload.newHeaders;
+      const item = newState.find(i => i.host === host);
+      if (item) {
+        const index = newState.indexOf(item);
+        if (index !== -1) {
+          newState[index] = {
+            ...item,
+            headers: action.payload.newHeaders,
+          };
+        }
       }
       return newState;
     },
@@ -86,35 +93,51 @@ const apisSlice = createSlice<
       const newState = state;
       const { index } = action.payload;
 
-      if (index <= newState.apiHeaders.length) {
-        newState.apiHeaders[index] = action.payload.newHeaders;
+      if (index <= newState.length) {
+        newState[index] = {
+          ...state[index],
+          headers: action.payload.newHeaders,
+        };
       }
       return newState;
     },
-    addToApi1HeadersByHost: (
+    addToApiHeadersByHost: (
       state,
       action: PayloadAction<AddToApiHeadersByHost>,
     ) => {
+      const newState = state;
       const { host } = action.payload;
 
-      const index = state.apiHosts.indexOf(host);
-      if (index !== -1) {
-        Object.assign(state.apiHeaders[index], {
-          [action.payload.newHeader.key]: action.payload.newHeader.value,
-        });
+      const item = newState.find(i => i.host === host);
+      if (item) {
+        const index = newState.indexOf(item);
+        if (index !== -1) {
+          newState[index] = {
+            ...item,
+            headers: {
+              ...item.headers,
+              [action.payload.newHeader.key]: action.payload.newHeader.value,
+            },
+          };
+        }
       }
       return state;
     },
-    addToApi1HeadersByIndex: (
+    addToApiHeadersByIndex: (
       state,
       action: PayloadAction<AddToApiHeadersByIndex>,
     ) => {
+      const newState = state;
       const { index } = action.payload;
 
-      if (index <= state.apiHeaders.length) {
-        Object.assign(state.apiHeaders[index], {
-          [action.payload.newHeader.key]: action.payload.newHeader.value,
-        });
+      if (index <= state.length) {
+        newState[index] = {
+          ...newState[index],
+          headers: {
+            ...newState[index].headers,
+            [action.payload.newHeader.key]: action.payload.newHeader.value,
+          },
+        };
       }
       return state;
     },
@@ -125,9 +148,15 @@ const apisSlice = createSlice<
       const newState = state;
       const { host } = action.payload;
 
-      const index = newState.apiHosts.indexOf(host);
-      if (index !== -1) {
-        newState.apiAxiosInstances[index] = action.payload.axiosInstance;
+      const item = newState.find(i => i.host === host);
+      if (item) {
+        const index = newState.indexOf(item);
+        if (index !== -1) {
+          newState[index] = {
+            ...item,
+            axiosInstance: action.payload.axiosInstance,
+          };
+        }
       }
       return newState;
     },
@@ -138,8 +167,11 @@ const apisSlice = createSlice<
       const newState = state;
       const { index } = action.payload;
 
-      if (index <= newState.apiHosts.length) {
-        newState.apiAxiosInstances[index] = action.payload.axiosInstance;
+      if (index <= newState.length) {
+        newState[index] = {
+          ...newState[index],
+          axiosInstance: action.payload.axiosInstance,
+        };
       }
       return newState;
     },
@@ -153,8 +185,8 @@ export const {
   updateApiHostByIndex,
   updateApiHeadersByHost,
   updateApiHeadersByIndex,
-  addToApi1HeadersByHost,
-  addToApi1HeadersByIndex,
+  addToApiHeadersByHost,
+  addToApiHeadersByIndex,
   updateApiAxiosInstanceByHost,
   updateApiAxiosInstanceByIndex,
 } = apisSlice.actions;
