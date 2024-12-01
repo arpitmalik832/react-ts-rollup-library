@@ -1,6 +1,6 @@
 {
   "name": "@arpitmalik832/react-ts-rollup-library",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1-alpha.4",
   "description": "A React JS starter code",
   "type": "module",
   "author": "Arpit Malik",
@@ -199,7 +199,7 @@
     "prettier": "^3.4.1",
     "release-it": "^17.10.0",
     "rimraf": "^6.0.1",
-    "rollup": "4.27.4",
+    "rollup": "4.28.0",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-progress": "^1.1.2",
@@ -228,7 +228,7 @@
     "webpack": "^5.96.1",
     "webpack-bundle-analyzer": "^4.10.2"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@reduxjs/toolkit": "^2.4.0",
     "axios": "^1.7.8",
     "react": "^18.3.1",
