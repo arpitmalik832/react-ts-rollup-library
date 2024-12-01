@@ -1,6 +1,6 @@
 import type { AxiosInstance } from 'axios';
 
-import type { KeyValuePair, VoidFunctionWithParams } from '../../types/types';
+import type { KeyValuePair, VoidFunctionWithParams } from '../types/types';
 
 export interface AppRedux {
   theme: string;
@@ -52,11 +52,7 @@ export interface UpdateApiAxiosInstanceByIndex {
   axiosInstance: AxiosInstance;
 }
 
-export interface ApisRedux {
-  apiHosts: string[];
-  apiHeaders: Record<string, string>[];
-  apiAxiosInstances: AxiosInstance[];
-}
+export type ApisRedux = APIData[];
 
 export interface NavigationRedux {
   stack: VoidFunctionWithParams[];
@@ -66,4 +62,9 @@ export interface ReduxState {
   app: AppRedux;
   apis: ApisRedux;
   navigation: NavigationRedux;
+}
+
+export interface BaseQueryParams {
+  axiosInstance: AxiosInstance;
+  url: string;
 }

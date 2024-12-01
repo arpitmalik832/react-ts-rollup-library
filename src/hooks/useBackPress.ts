@@ -9,7 +9,7 @@ import {
 } from '../redux/slices/navigationSlice';
 import beforeUnload from '../utils/eventListeners/beforeUnload';
 import { errorLog, log } from '../utils/logsUtils';
-import type { ReduxState, NavigationRedux } from '../redux/slices/types';
+import type { ReduxState, NavigationRedux } from '../redux/types';
 import type { VoidFunctionWithParams } from '../types/types';
 import { APP_UNMOUNT, BACK_CLICK } from '../enums/app';
 
