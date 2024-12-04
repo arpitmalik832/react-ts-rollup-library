@@ -53,7 +53,7 @@ const addRequestInterceptor = <T>(axiosInstance: AxiosInstance) => {
       log('Starting request -> ', newRequest);
       return newRequest;
     },
-    (error: AxiosError<T, RequestMetadata>) => {
+    (error: AxiosError<T, unknown>) => {
       errorLog('Request returned with error -> ', error);
       throw error;
     },
@@ -62,7 +62,7 @@ const addRequestInterceptor = <T>(axiosInstance: AxiosInstance) => {
 
 const addResponseInterceptor = <T>(axiosInstance: AxiosInstance) => {
   axiosInstance.interceptors.response.use(
-    response => {
+    (response: AxiosResponse<T, unknown>) => {
       const metadata = JSON.parse(
         response.config.data as string,
       ) as RequestMetadata;
@@ -88,7 +88,7 @@ const addResponseInterceptor = <T>(axiosInstance: AxiosInstance) => {
       log('Returning response -> ', newResponse);
       return newResponse;
     },
-    (error: AxiosError<T, RequestMetadata>) => {
+    (error: AxiosError<T, unknown>) => {
       const metadata = JSON.parse(
         error.config!.data as string,
       ) as RequestMetadata;
@@ -104,7 +104,7 @@ const addResponseInterceptor = <T>(axiosInstance: AxiosInstance) => {
       } else {
         updatedMetadata = { startTime: '', endTime: '', responseTime: 0 };
       }
-      const newError: AxiosError<T, RequestMetadata> = {
+      const newError: AxiosError<T, unknown> = {
         ...error,
         config: {
           ...error.config,

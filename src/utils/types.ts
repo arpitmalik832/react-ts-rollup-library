@@ -2,7 +2,9 @@ export type MQEventListener = (
   this: MediaQueryList,
   ev: MediaQueryListEvent,
 ) => void;
+
 export type EventListener = (this: Window, ev: Event) => void;
+
 export type BeforeUnloadEventListener = (
   this: Window,
   ev: BeforeUnloadEvent,

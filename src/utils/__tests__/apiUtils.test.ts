@@ -156,7 +156,7 @@ describe('apiUtils unit test', () => {
 
   it('test addResponseInterceptor', () => {
     addResponseInterceptor(axiosInstance);
-    const response: AxiosResponse<string, RequestMetadata> = {
+    const response: AxiosResponse<string, string> = {
       data: 'data',
       status: 200,
       statusText: 'OK',
@@ -187,7 +187,7 @@ describe('apiUtils unit test', () => {
 
   it('test addResponseInterceptor', () => {
     addResponseInterceptor(axiosInstance);
-    const response: AxiosResponse<string, RequestMetadata> = {
+    const response: AxiosResponse<string, string> = {
       data: 'data',
       status: 200,
       statusText: 'OK',
