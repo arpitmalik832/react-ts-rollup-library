@@ -1,4 +1,4 @@
-name: Publish Package Release
+name: Publish Package Beta
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ on:
           - major
   push:
     branches:
-      - release
+      - beta
 
 jobs:
   publish:
@@ -42,9 +42,9 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Publishing the library package
         run: |
-          pnpm version-bump:${{ github.event.inputs.version_bump_type }}
+          pnpm version-bump:${{ github.event.inputs.version_bump_type }}:beta
           pnpm build:prod
-          pnpm publish:release
+          pnpm publish:beta
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Output package details
