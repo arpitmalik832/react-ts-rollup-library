@@ -7,12 +7,12 @@ import {
   ERR_NO_APP_ENV_FLAG,
   ERR_NO_LIB_ENV_FLAG,
 } from '../../config/logs.mjs';
-import { ENVS } from '../../config/index.mjs';
+import { BUILD_TYPE, ENVS } from '../../config/index.mjs';
 
 /**
  * @returns {import('rollup').RollupOptions[]}
  */
-function getAddons() {
+const getAddons = () => {
   const addMinimizer =
     process.env.LIB_ENV && [ENVS.PROD, ENVS.BETA].includes(process.env.LIB_ENV);
   const addStripCustomWindowVariables =
@@ -24,16 +24,16 @@ function getAddons() {
   if (addMinimizer) configs.push(minimizerConfig);
   if (addStripCustomWindowVariables)
     configs.push(stripCustomWindowVariablesConfig);
-  if (addVisualizer) configs.push(visualizerConfig('main'));
-  if (addBuildStats) configs.push(buildStatsConfig('main'));
+  if (addVisualizer) configs.push(visualizerConfig(BUILD_TYPE.MAIN));
+  if (addBuildStats) configs.push(buildStatsConfig(BUILD_TYPE.MAIN));
 
   return configs;
-}
+};
 
 /**
  * @returns {import('rollup').RollupOptions}
  */
-function getConfig() {
+const getConfig = () => {
   if (!process.env.LIB_ENV) {
     throw new Error(ERR_NO_LIB_ENV_FLAG);
   }
@@ -47,6 +47,6 @@ function getConfig() {
     ...baseConfig,
     plugins: [...baseConfig.plugins, ...addons.flatMap(addon => addon.plugins)],
   };
-}
+};
 
 export default getConfig;
