@@ -1,5 +1,9 @@
 import terser from '@rollup/plugin-terser';
 
+import { ENVS } from '../../config/index.mjs';
+
+const isProd = process.env.LIB_ENV === ENVS.PROD;
+
 /**
  * @returns {import('rollup').RollupOptions}
  */
@@ -8,7 +12,7 @@ const config = {
     terser({
       compress: {
         dead_code: true,
-        drop_debugger: true,
+        drop_debugger: isProd,
         drop_console: false,
         conditionals: true,
         evaluate: true,

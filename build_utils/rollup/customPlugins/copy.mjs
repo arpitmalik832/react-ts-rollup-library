@@ -3,8 +3,8 @@ import copy from 'rollup-plugin-copy';
 /**
  * @returns {import('rollup').InputPluginOption}
  */
-function config() {
-  return copy({
+const config = () =>
+  copy({
     targets: [
       {
         src: 'static/styles/*',
@@ -18,12 +18,7 @@ function config() {
         src: 'static/enums/icons_list.mjs',
         dest: 'dist',
       },
-      {
-        src: 'static/enums/icons_list.ts',
-        dest: 'dist',
-      },
     ],
   });
-}
 
 export default config;

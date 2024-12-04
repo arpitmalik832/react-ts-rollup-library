@@ -41,6 +41,6 @@ declare module '*.tiff' {
 }
 
 declare module '*.scss' {
-  const content: { [className: string]: string };
+  const content: Record<string, string>;
   export default content;
 }
