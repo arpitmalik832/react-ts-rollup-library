@@ -12,9 +12,6 @@ on:
           - patch
           - minor
           - major
-  push:
-    branches:
-      - release
 
 jobs:
   publish:
