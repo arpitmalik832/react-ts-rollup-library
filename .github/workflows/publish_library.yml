@@ -1,4 +1,4 @@
-name: Publish Package Release
+name: Publish Package
 
 on:
   workflow_dispatch:
@@ -12,6 +12,16 @@ on:
           - patch
           - minor
           - major
+      release_type:
+        description: 'Release type (release, alpha, beta, rc)'
+        required: true
+        default: 'alpha'
+        type: 'choice'
+        options:
+          - release
+          - alpha
+          - beta
+          - rc
 
 jobs:
   publish:
@@ -37,11 +47,16 @@ jobs:
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" >> ~/.npmrc
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
+      - name: Bumping the version for release
+        if: github.event.inputs.release_type == 'release'
+        run: pnpm version-bump:${{ github.event.inputs.version_bump_type }}
+      - name: Bumping the version for others
+        if: github.event.inputs.release_type != 'release'
+        run: pnpm version-bump:${{ github.event.inputs.version_bump_type }}:${{ github.event.inputs.release_type }}
       - name: Publishing the library package
         run: |
-          pnpm version-bump:${{ github.event.inputs.version_bump_type }}
           pnpm build:prod
-          pnpm publish:release
+          pnpm publish:${{ github.event.inputs.release_type }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Output package details
