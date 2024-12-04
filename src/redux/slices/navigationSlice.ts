@@ -5,7 +5,7 @@ import {
   SliceSelectors,
 } from '@reduxjs/toolkit';
 
-import type { NavigationRedux } from './types';
+import type { NavigationRedux } from '../types';
 import type { VoidFunctionWithParams } from '../../types/types';
 import { SLICE_NAMES } from '../../enums/redux';
 
