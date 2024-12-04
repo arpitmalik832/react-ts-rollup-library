@@ -1,11 +1,14 @@
 import { visualizer } from 'rollup-plugin-visualizer';
 
+import { BUILD_TYPE } from '../../config/index.mjs';
+import { distInfoPath } from '../../config/commonPaths.mjs';
+
 /**
  * @returns {import('rollup').RollupOptions}
  */
-function getConfig(type) {
+const getConfig = type => {
   const timestamp = new Date().toISOString().replace(/:/g, '-');
-  const path = `distInfo/${type === 'svgr' ? 'svgr' : 'main'}/${process.env.LIB_ENV}/visualizers/${timestamp}`;
+  const path = `${distInfoPath}/${type === BUILD_TYPE.SVGR ? BUILD_TYPE.SVGR : BUILD_TYPE.MAIN}/${process.env.LIB_ENV}/visualizers/${timestamp}`;
 
   return {
     plugins: [
@@ -35,6 +38,6 @@ function getConfig(type) {
       }),
     ],
   };
-}
+};
 
 export default getConfig;
