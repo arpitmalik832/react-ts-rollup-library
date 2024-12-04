@@ -160,7 +160,7 @@ jobs:
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
       - name: Building the project
-        run: pnpm build
+        run: pnpm build:prod
   storybook-build:
     runs-on: ubuntu-latest
     strategy:
@@ -185,7 +185,7 @@ jobs:
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
       - name: Building the storybook
-        run: pnpm storybook:build
+        run: pnpm storybook:build:prod
   bundle-watch:
     runs-on: ubuntu-latest
     strategy:
@@ -210,7 +210,7 @@ jobs:
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
       - name: Building the project
-        run: pnpm build
+        run: pnpm build:prod
       - name: Checking bundle size
         run: npx bundlewatch --config bundlewatch.config.json
         env:
