@@ -13,8 +13,8 @@ printf "${Green}Start - Checking the code for file sizes.${NC}"
 # larger than $limit to your _local_ repo fail, with a helpful error message.
 
 # Maximum file size limit in bytes
-limit=$(( 50 * 2**20 )) # 50MB
-limitInMB=$(( $limit / 2**20 ))
+limit=$(( 50 * 1024 * 1024 )) # 50MB
+limitInMB=$(( $limit / (1024 * 1024) ))
 
 # Move to the repo root so git files paths make sense
 repo_root=$( git rev-parse --show-toplevel )
