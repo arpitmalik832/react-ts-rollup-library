@@ -52,7 +52,9 @@ jobs:
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
       - name: Bumping the version
-        run: pnpm version-bump:${{ github.event.inputs.version_bump_type }}:${{ github.event.inputs.release_type }}
+        run: |
+          git status
+          pnpm version-bump:${{ github.event.inputs.version_bump_type }}:${{ github.event.inputs.release_type }}
       - name: Publishing the library package
         run: |
           pnpm build:prod
