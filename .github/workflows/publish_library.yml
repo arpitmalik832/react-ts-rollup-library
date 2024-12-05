@@ -54,6 +54,8 @@ jobs:
       - name: Bumping the version
         run: |
           git status
+          git stash
+          git status
           pnpm version-bump:${{ github.event.inputs.version_bump_type }}:${{ github.event.inputs.release_type }}
       - name: Publishing the library package
         run: |
