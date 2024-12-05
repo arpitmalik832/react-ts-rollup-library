@@ -53,8 +53,13 @@ jobs:
           git stash
           git status
           pnpm version-bump:${{ github.event.inputs.version_bump_type }}:${{ github.event.inputs.release_type }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Publishing the library package
         run: |
+          git status
+          git stash pop
+          git status
           pnpm build:prod
           pnpm publish:${{ github.event.inputs.release_type }}
         env:
