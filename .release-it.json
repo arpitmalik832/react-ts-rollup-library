@@ -15,7 +15,7 @@
       "echo 'Starting the release process...'",
       "pnpm lint:fix",
       "git add .",
-      "git commit -m 'chore(main): lint fixes'"
+      "git status"
     ],
     "after:bump": ["git add ."],
     "after:release": ["echo 'Release process completed successfully.'"]
