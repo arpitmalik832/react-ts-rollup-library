@@ -3,7 +3,7 @@
     "publish": false
   },
   "git": {
-    "requireCleanWorkingDir": true,
+    "requireCleanWorkingDir": false,
     "commitMessage": "chore(main): bump version to ${version}",
     "tagName": "v${version}",
     "push": true,
