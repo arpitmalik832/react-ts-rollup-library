@@ -68,14 +68,14 @@ sup {
 img {
   pointer-events: none;
   width: 100%;
-  background: transparent;
   border-style: none;
+  background: transparent;
   animation: fadeIn ease 500ms;
 }
 
 svg {
-  background: transparent;
   border-style: none;
+  background: transparent;
   animation: fadeIn ease 500ms;
 }
 
