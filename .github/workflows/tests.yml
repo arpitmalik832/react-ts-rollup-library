@@ -10,23 +10,23 @@ on:
       - master
       - 'feature-*'
 
+env:
+  PNPM_VERSION: 10.0.0-beta.1
+  NODE_VERSION: 22
+
 jobs:
   dependency-audit:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20]
-        pnpm-version: [10.0.0-beta.1]
     steps:
       - uses: actions/checkout@v4
-      - name: Installing pnpm ${{ matrix.pnpm-version }}
+      - name: Installing pnpm ${{ env.PNPM_VERSION }}
         uses: pnpm/action-setup@v4
         with:
-          version: ${{ matrix.pnpm-version }}
-      - name: Using Node.js ${{ matrix.node-version }}
+          version: ${{ env.PNPM_VERSION }}
+      - name: Using Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
       - name: Authenticating with GitHub Packages
         run: |
@@ -44,14 +44,14 @@ jobs:
         pnpm-version: [10.0.0-beta.1]
     steps:
       - uses: actions/checkout@v4
-      - name: Installing pnpm ${{ matrix.pnpm-version }}
+      - name: Installing pnpm ${{ env.PNPM_VERSION }}
         uses: pnpm/action-setup@v4
         with:
-          version: ${{ matrix.pnpm-version }}
-      - name: Using Node.js ${{ matrix.node-version }}
+          version: ${{ env.PNPM_VERSION }}
+      - name: Using Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
       - name: Authenticating with GitHub Packages
         run: |
@@ -69,14 +69,14 @@ jobs:
         pnpm-version: [10.0.0-beta.1]
     steps:
       - uses: actions/checkout@v4
-      - name: Installing pnpm ${{ matrix.pnpm-version }}
+      - name: Installing pnpm ${{ env.PNPM_VERSION }}
         uses: pnpm/action-setup@v4
         with:
-          version: ${{ matrix.pnpm-version }}
-      - name: Using Node.js ${{ matrix.node-version }}
+          version: ${{ env.PNPM_VERSION }}
+      - name: Using Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
       - name: Authenticating with GitHub Packages
         run: |
@@ -94,14 +94,14 @@ jobs:
         pnpm-version: [10.0.0-beta.1]
     steps:
       - uses: actions/checkout@v4
-      - name: Installing pnpm ${{ matrix.pnpm-version }}
+      - name: Installing pnpm ${{ env.PNPM_VERSION }}
         uses: pnpm/action-setup@v4
         with:
-          version: ${{ matrix.pnpm-version }}
-      - name: Using Node.js ${{ matrix.node-version }}
+          version: ${{ env.PNPM_VERSION }}
+      - name: Using Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
       - name: Authenticating with GitHub Packages
         run: |
@@ -119,14 +119,14 @@ jobs:
         pnpm-version: [10.0.0-beta.1]
     steps:
       - uses: actions/checkout@v4
-      - name: Installing pnpm ${{ matrix.pnpm-version }}
+      - name: Installing pnpm ${{ env.PNPM_VERSION }}
         uses: pnpm/action-setup@v4
         with:
-          version: ${{ matrix.pnpm-version }}
-      - name: Using Node.js ${{ matrix.node-version }}
+          version: ${{ env.PNPM_VERSION }}
+      - name: Using Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
       - name: Authenticating with GitHub Packages
         run: |
@@ -144,14 +144,14 @@ jobs:
         pnpm-version: [10.0.0-beta.1]
     steps:
       - uses: actions/checkout@v4
-      - name: Installing pnpm ${{ matrix.pnpm-version }}
+      - name: Installing pnpm ${{ env.PNPM_VERSION }}
         uses: pnpm/action-setup@v4
         with:
-          version: ${{ matrix.pnpm-version }}
-      - name: Using Node.js ${{ matrix.node-version }}
+          version: ${{ env.PNPM_VERSION }}
+      - name: Using Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
       - name: Authenticating with GitHub Packages
         run: |
@@ -169,14 +169,14 @@ jobs:
         pnpm-version: [10.0.0-beta.1]
     steps:
       - uses: actions/checkout@v4
-      - name: Installing pnpm ${{ matrix.pnpm-version }}
+      - name: Installing pnpm ${{ env.PNPM_VERSION }}
         uses: pnpm/action-setup@v4
         with:
-          version: ${{ matrix.pnpm-version }}
-      - name: Using Node.js ${{ matrix.node-version }}
+          version: ${{ env.PNPM_VERSION }}
+      - name: Using Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
       - name: Authenticating with GitHub Packages
         run: |
@@ -194,14 +194,14 @@ jobs:
         pnpm-version: [10.0.0-beta.1]
     steps:
       - uses: actions/checkout@v4
-      - name: Installing pnpm ${{ matrix.pnpm-version }}
+      - name: Installing pnpm ${{ env.PNPM_VERSION }}
         uses: pnpm/action-setup@v4
         with:
-          version: ${{ matrix.pnpm-version }}
-      - name: Using Node.js ${{ matrix.node-version }}
+          version: ${{ env.PNPM_VERSION }}
+      - name: Using Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
       - name: Authenticating with GitHub Packages
         run: |
