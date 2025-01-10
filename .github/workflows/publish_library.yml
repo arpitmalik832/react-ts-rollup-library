@@ -51,14 +51,19 @@ jobs:
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" >> ~/.npmrc
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
-      - name: Bumping the version for release
-        if: github.event.inputs.release_type == 'release'
-        run: pnpm version-bump:${{ github.event.inputs.version_bump_type }}
-      - name: Bumping the version for others
-        if: github.event.inputs.release_type != 'release'
-        run: pnpm version-bump:${{ github.event.inputs.version_bump_type }}:${{ github.event.inputs.release_type }}
+      - name: Bumping the version
+        run: |
+          git status
+          git stash
+          git status
+          pnpm version-bump:${{ github.event.inputs.version_bump_type }}:${{ github.event.inputs.release_type }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Publishing the library package
         run: |
+          git status
+          git stash pop
+          git status
           pnpm build:prod
           pnpm publish:${{ github.event.inputs.release_type }}
         env:
