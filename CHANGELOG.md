@@ -1,3 +1,9 @@
+# Changelog
+
+## [0.0.1-alpha.8](https://github.com/arpitmalik832/react-ts-rollup-library/compare/v0.0.1-alpha.7...v0.0.1-alpha.8) (2025-01-10)
+
+## [0.0.1-alpha.7](https://github.com/arpitmalik832/react-ts-rollup-library/compare/v0.0.1-alpha.6...v0.0.1-alpha.7) (2024-12-04)
+
 ## [0.0.1-alpha.6](https://github.com/arpitmalik832/react-ts-rollup-library/compare/v0.0.1-alpha.5...v0.0.1-alpha.6) (2024-12-01)
 
 ## [0.0.1-alpha.5](https://github.com/arpitmalik832/react-ts-rollup-library/compare/v0.0.1-alpha.4...v0.0.1-alpha.5) (2024-12-01)
