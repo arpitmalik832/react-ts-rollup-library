@@ -18,10 +18,6 @@ const config = () =>
         src: 'static/enums/icons_list.mjs',
         dest: 'dist',
       },
-      {
-        src: 'static/enums/icons_list.ts',
-        dest: 'dist',
-      },
     ],
   });
 

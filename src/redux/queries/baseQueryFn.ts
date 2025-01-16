@@ -1,18 +1,17 @@
-import { AxiosInstance } from 'axios';
-import { BaseQueryApi, BaseQueryFn } from '@reduxjs/toolkit/query';
+import { BaseQueryFn } from '@reduxjs/toolkit/query';
+import { AxiosError } from 'axios';
 
 import useApiRequest from '../../hooks/useApiRequest';
+import { BaseQueryParams } from '../types';
 
 const baseQueryFn =
-  <T>(): BaseQueryFn<AxiosInstance> =>
-  async (axiosInstance: AxiosInstance, baseQuery: BaseQueryApi) => {
+  <B extends BaseQueryParams, T>(): BaseQueryFn<B> =>
+  async ({ axiosInstance, url }: B) => {
     const { makeGetCall } = useApiRequest();
-    try {
-      const response = await makeGetCall<T>(baseQuery.endpoint, axiosInstance);
-      return { data: response };
-    } catch (err) {
-      return { error: err };
-    }
+
+    return makeGetCall<T>(url, axiosInstance)
+      .then(response => ({ data: response }))
+      .catch((err: AxiosError<T>) => ({ error: err }));
   };
 
 export default baseQueryFn;
