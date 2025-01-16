@@ -22,6 +22,15 @@ on:
           - alpha
           - beta
           - rc
+      build_type:
+        description: 'Build type (prod, beta, stage)'
+        required: true
+        default: 'prod'
+        type: 'choice'
+        options:
+          - prod
+          - beta
+          - stage
 
 env:
   PNPM_VERSION: 10.0.0-beta.1
@@ -32,6 +41,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
       - name: Installing pnpm ${{ env.PNPM_VERSION }}
         uses: pnpm/action-setup@v4
         with:
@@ -43,8 +54,9 @@ jobs:
           cache: 'pnpm'
       - name: Configure Git
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git remote set-url origin https://${{ github.actor }}:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
       - name: Authenticating with GitHub Packages
         run: |
           sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' .npmrc
@@ -64,7 +76,11 @@ jobs:
           git status
           git stash pop
           git status
-          pnpm build:prod
+          if [ "${{ github.event.inputs.build_type }}" = "stage" ]; then
+            pnpm build
+          else
+            pnpm build:${{ github.event.inputs.build_type }}
+          fi
           pnpm publish:${{ github.event.inputs.release_type }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
