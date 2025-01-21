@@ -1,8 +1,12 @@
 import type { AllParams, VoidFunctionWithParams } from '../types/types';
 import { errorLog } from './logsUtils';
 
-const isNonInteger = <T>(val: T) =>
-  val === '.' || !/^[0-9,]*$/.test(val as string);
+const isNonInteger = <T>(val: T) => {
+  if (typeof val === 'string') {
+    return !/^[0-9,]*$/.test(val);
+  }
+  return val === '.';
+};
 
 const triggerCallback = (
   callback?: VoidFunctionWithParams,
@@ -54,7 +58,10 @@ const scrollToTop = () => {
   window.scrollTo(0, 0);
 };
 
-const copyToClipboard = (text: string, callback: VoidFunctionWithParams) => {
+const copyToClipboard = (
+  text: string,
+  callback: VoidFunctionWithParams | VoidFunction,
+) => {
   navigator?.clipboard
     ?.writeText(text)
     .then(() => {

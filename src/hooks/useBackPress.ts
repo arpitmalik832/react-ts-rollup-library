@@ -12,8 +12,9 @@ import { errorLog, log } from '../utils/logsUtils';
 import type { ReduxState, NavigationRedux } from '../redux/types';
 import type { VoidFunctionWithParams } from '../types/types';
 import { APP_UNMOUNT, BACK_CLICK } from '../enums/app';
+import { UseBackPress } from './types';
 
-const useBackPress = () => {
+const useBackPress = (): UseBackPress => {
   const { stack } = useSelector<ReduxState, NavigationRedux>(
     state => state.navigation,
   );

@@ -1,8 +1,8 @@
-import type { EventListener, EventListenerUtil } from '../types';
+import type { EventListener } from '../types';
 
-const load: EventListenerUtil<EventListener> = {
+const load = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
-  callBackFn(...args: Parameters<EventListener>) {},
+  callBackFn: (...args: Parameters<EventListener>) => {},
   subscribe(callBackFn: EventListener) {
     this.callBackFn = callBackFn;
 

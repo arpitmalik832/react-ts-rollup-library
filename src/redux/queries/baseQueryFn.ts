@@ -9,7 +9,7 @@ const baseQueryFn =
   async ({ axiosInstance, url }: B) => {
     const { makeGetCall } = useApiRequest();
 
-    return makeGetCall<T>(url, axiosInstance)
+    return makeGetCall<T>({ url, axiosInstance })
       .then(response => ({ data: response }))
       .catch((err: AxiosError<T>) => ({ error: err }));
   };

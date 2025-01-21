@@ -24,6 +24,7 @@ exports[`index.ts exports snapshot test 1`] = `
   "Button": [Function],
   "ComponentWithSuspense": [Function],
   "HtmlContent": [Function],
+  "IsMobile": [Function],
   "Loader": [Function],
   "REDUX": {
     "SLICE_NAMES": {
@@ -83,11 +84,6 @@ exports[`index.ts exports snapshot test 1`] = `
   "isDesktop": [Function],
   "isEqualsIgnoringCase": [Function],
   "isLocalhost": [Function],
-  "isMobile": {
-    "android": [Function],
-    "any": [Function],
-    "iOS": [Function],
-  },
   "isMobileBrowser": [Function],
   "isNonInteger": [Function],
   "load": {
