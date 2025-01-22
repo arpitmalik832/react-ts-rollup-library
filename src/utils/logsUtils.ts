@@ -36,10 +36,10 @@ const traceLog = (...args: AllParams[]) => {
   }
 };
 
-const tableLog = (...args: AllParams[]) => {
+const tableLog = <T>(...args: Record<string, T>[] | T[][]) => {
   if (process.env.APP_ENV !== ENVS.PROD) {
     // eslint-disable-next-line no-console
-    console.table(...args);
+    console.table(args);
   }
 };
 

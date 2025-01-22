@@ -10,12 +10,6 @@ export type BeforeUnloadEventListener = (
   ev: BeforeUnloadEvent,
 ) => void;
 
-export interface EventListenerUtil<T> {
-  callBackFn: T;
-  subscribe(callBackFn: T): void;
-  unSubscribe(): void;
-}
-
 export interface RequestMetadata {
   startTime: string;
   endTime: string;

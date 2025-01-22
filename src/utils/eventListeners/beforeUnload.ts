@@ -1,8 +1,8 @@
-import type { BeforeUnloadEventListener, EventListenerUtil } from '../types';
+import type { BeforeUnloadEventListener } from '../types';
 
-const beforeUnload: EventListenerUtil<BeforeUnloadEventListener> = {
+const beforeUnload = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
-  callBackFn(...args: Parameters<BeforeUnloadEventListener>): void {},
+  callBackFn: (...args: Parameters<BeforeUnloadEventListener>) => {},
   subscribe(callBackFn: BeforeUnloadEventListener) {
     this.callBackFn = callBackFn;
 

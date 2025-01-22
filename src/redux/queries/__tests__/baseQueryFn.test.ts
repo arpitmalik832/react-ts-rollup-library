@@ -51,7 +51,10 @@ describe('baseQueryFn', () => {
       ),
     ).resolves.toEqual({ data: mockResponse });
 
-    expect(mockMakeGetCall).toHaveBeenCalledWith('test/url', axiosInstance);
+    expect(mockMakeGetCall).toHaveBeenCalledWith({
+      axiosInstance,
+      url: 'test/url',
+    });
   });
 
   it('should handle API call errors', async () => {

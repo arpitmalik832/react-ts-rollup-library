@@ -31,10 +31,10 @@ describe('useApiRequest', () => {
     const { result } = renderHook(() => useApiRequest());
 
     try {
-      const resp = await result.current.makeGetCall<Body>(
-        '/posts/1',
-        axiosInstance as unknown as AxiosInstance,
-      );
+      const resp = await result.current.makeGetCall<Body>({
+        url: '/posts/1',
+        axiosInstance: axiosInstance as unknown as AxiosInstance,
+      });
       expect(spy).toHaveBeenCalled();
       expect(resp).toBe(respBody);
     } catch (err: unknown) {
@@ -58,11 +58,10 @@ describe('useApiRequest', () => {
     const { result } = renderHook(() => useApiRequest());
 
     try {
-      const resp = await result.current.makePostCall<Body, Body>(
-        '/posts',
-        {},
-        axiosInstance as unknown as AxiosInstance,
-      );
+      const resp = await result.current.makePostCall<Body, Body>({
+        url: '/posts',
+        axiosInstance: axiosInstance as unknown as AxiosInstance,
+      });
       expect(spy).toHaveBeenCalled();
       expect(resp).toBe(respBody);
     } catch (err: unknown) {
@@ -86,11 +85,10 @@ describe('useApiRequest', () => {
     const { result } = renderHook(() => useApiRequest());
 
     try {
-      const resp = await result.current.makePutCall<Body, Body>(
-        '/posts/1',
-        {},
-        axiosInstance as unknown as AxiosInstance,
-      );
+      const resp = await result.current.makePutCall<Body, Body>({
+        url: '/posts/1',
+        axiosInstance: axiosInstance as unknown as AxiosInstance,
+      });
       expect(spy).toHaveBeenCalled();
       expect(resp).toBe(respBody);
     } catch (err: unknown) {
@@ -114,10 +112,10 @@ describe('useApiRequest', () => {
     const { result } = renderHook(() => useApiRequest());
 
     try {
-      const resp = await result.current.makeDeleteCall<Body>(
-        '/posts/1',
-        axiosInstance as unknown as AxiosInstance,
-      );
+      const resp = await result.current.makeDeleteCall<Body>({
+        url: '/posts/1',
+        axiosInstance: axiosInstance as unknown as AxiosInstance,
+      });
       expect(spy).toHaveBeenCalled();
       expect(resp).toBe(respBody);
     } catch (err: unknown) {
@@ -141,10 +139,10 @@ describe('useApiRequest', () => {
     const { result } = renderHook(() => useApiRequest());
 
     try {
-      const resp = await result.current.makeGetCall<Body>(
-        '/posts/1',
-        axiosInstance as unknown as AxiosInstance,
-      );
+      const resp = await result.current.makeGetCall<Body>({
+        url: '/posts/1',
+        axiosInstance: axiosInstance as unknown as AxiosInstance,
+      });
       result.current.cancelRequest('GET /posts/1');
       expect(spy).toHaveBeenCalled();
       expect(resp).toBe(respBody);
@@ -171,17 +169,16 @@ describe('useApiRequest', () => {
     const { result } = renderHook(() => useApiRequest());
 
     try {
-      const resp = await result.current.makeGetCall<Body>(
-        '/posts/1',
-        axiosInstance as unknown as AxiosInstance,
-      );
+      const resp = await result.current.makeGetCall<Body>({
+        url: '/posts/1',
+        axiosInstance: axiosInstance as unknown as AxiosInstance,
+      });
       expect(spy).toHaveBeenCalled();
       expect(resp).toBe(respBody);
-      const resp2 = await result.current.makePostCall<Body, Body>(
-        '/posts',
-        {},
-        axiosInstance as unknown as AxiosInstance,
-      );
+      const resp2 = await result.current.makePostCall<Body, Body>({
+        url: '/posts',
+        axiosInstance: axiosInstance as unknown as AxiosInstance,
+      });
       result.current.cancelAllRequests();
       expect(spy2).toHaveBeenCalled();
       expect(resp2).toBe(respBody);

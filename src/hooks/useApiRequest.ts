@@ -1,10 +1,12 @@
-import { AxiosInstance, AxiosRequestConfig } from 'axios';
-
 import { handleRequest } from '../utils/apiUtils';
+import {
+  AbortControllers,
+  RequestConfig,
+  RequestConfigWithBody,
+  UseApiRequest,
+} from './types';
 
-type AbortControllers = Record<string, AbortController>;
-
-const useApiRequest = () => {
+const useApiRequest = (): UseApiRequest => {
   let abortControllers: AbortControllers = {};
 
   const createAbortController = (key: string) => {
@@ -15,11 +17,8 @@ const useApiRequest = () => {
     return abortControllers[key];
   };
 
-  const makeGetCall = <D>(
-    url: string,
-    axiosInstance: AxiosInstance,
-    config?: AxiosRequestConfig,
-  ) => {
+  const makeGetCall = <D>(params: RequestConfig) => {
+    const { url, axiosInstance, config } = params;
     const abortController = createAbortController(`GET ${url}`);
 
     const { signal } = abortController;
@@ -32,12 +31,8 @@ const useApiRequest = () => {
     );
   };
 
-  const makePostCall = <T, D>(
-    url: string,
-    body: T,
-    axiosInstance: AxiosInstance,
-    config?: AxiosRequestConfig,
-  ) => {
+  const makePostCall = <T, D>(params: RequestConfigWithBody<T>) => {
+    const { url, body, axiosInstance, config } = params;
     const abortController = createAbortController(`POST ${url}`);
 
     const { signal } = abortController;
@@ -50,12 +45,8 @@ const useApiRequest = () => {
     );
   };
 
-  const makePutCall = <T, D>(
-    url: string,
-    body: T,
-    axiosInstance: AxiosInstance,
-    config?: AxiosRequestConfig,
-  ) => {
+  const makePutCall = <T, D>(params: RequestConfigWithBody<T>) => {
+    const { url, body, axiosInstance, config } = params;
     const abortController = createAbortController(`PUT ${url}`);
 
     const { signal } = abortController;
@@ -68,11 +59,8 @@ const useApiRequest = () => {
     );
   };
 
-  const makeDeleteCall = <D>(
-    url: string,
-    axiosInstance: AxiosInstance,
-    config?: AxiosRequestConfig,
-  ) => {
+  const makeDeleteCall = <D>(params: RequestConfig) => {
+    const { url, axiosInstance, config } = params;
     const abortController = createAbortController(`DELETE ${url}`);
 
     const { signal } = abortController;

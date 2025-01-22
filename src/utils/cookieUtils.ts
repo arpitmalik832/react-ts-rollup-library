@@ -1,6 +1,7 @@
 const getCookie = (name: string) => {
   const b = document.cookie.match(`(^|[^;]+)\\s*${name}\\s*=\\s*([^;]+)`);
-  return b ? decodeURIComponent(b.pop()!) : '';
+  const top = b?.pop();
+  return top != null ? decodeURIComponent(top) : '';
 };
 
 const setCookie = (name: string, value: string, expTime?: Date | number) => {
